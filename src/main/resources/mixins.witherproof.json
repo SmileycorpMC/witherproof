@@ -1,0 +1,10 @@
+{
+  "compatibilityLevel": "JAVA_8",
+  "package": "net.smileycorp.witherproof.mixin",
+  "refmap": "mixins.witherproof.refmap.json",
+  "mixins": [
+    "MixinBlock"
+  ],
+  "client": [],
+  "server": []
+}

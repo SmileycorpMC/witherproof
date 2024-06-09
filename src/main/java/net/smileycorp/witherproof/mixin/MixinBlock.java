@@ -22,12 +22,14 @@ public abstract class MixinBlock {
     @Inject(at = @At("HEAD"), method = "canEntityDestroy", cancellable = true)
     private void witherproof$canEntityDestroy(IBlockState state, IBlockAccess world, BlockPos pos, Entity entity, CallbackInfoReturnable<Boolean> callback) {
         if (entity instanceof EntityDragon) callback.setReturnValue(hasOreDictionary(state, Constants.DRAGON_PROOF));
-        else if (entity instanceof EntityWither || entity instanceof EntityWitherSkull) callback.setReturnValue(hasOreDictionary(state, Constants.WITHERPROOF));
+        else if (entity instanceof EntityWither || entity instanceof EntityWitherSkull)
+            callback.setReturnValue(hasOreDictionary(state, Constants.WITHERPROOF));
     }
     
     private boolean hasOreDictionary(IBlockState state, String oreDict) {
         int id = OreDictionary.getOreID(oreDict);
-        for (int i : OreDictionary.getOreIDs(new ItemStack(state.getBlock(), state.getBlock().damageDropped(state)))) if(i == id) return true;
+        for (int i : OreDictionary.getOreIDs(new ItemStack(state.getBlock(), state.getBlock().damageDropped(state))))
+            if (i == id) return true;
         return false;
     }
     
