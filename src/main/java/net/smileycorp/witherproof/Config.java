@@ -13,14 +13,20 @@ public class Config {
     private static String[] dragonProofBlocks = {};
     
     public static void init(Configuration config) {
-        witherproofBlocks = config.get("general", "witherproofBlocks", new String[]{"minecraft:bedrock", "minecraft:end_portal",
-                "minecraft:end_portal_frame", "minecraft:command_block", "minecraft:repeating_command_block", "minecraft:chain_command_block", "minecraft:barrier",
-                "minecraft:structure_block", "minecraft:structure_void", "minecraft:piston_extension", "minecraft:end_gateway"
-        }, "Blocks that can't be broken by withers.").getStringList();
-        dragonProofBlocks = config.get("general", "dragonProofBlocks", new String[]{"minecraft:bedrock", "minecraft:end_portal",
-                "minecraft:end_portal_frame", "minecraft:command_block", "minecraft:repeating_command_block", "minecraft:chain_command_block", "minecraft:barrier",
-                "minecraft:obsidian", "minecraft:end_stone", "minecraft:iron_bars", "minecraft:end_gateway"
-        }, "Blocks that can't be broken by ender dragons.").getStringList();
+        try{
+        config.load();
+            witherproofBlocks = config.get("general", "witherproofBlocks", new String[]{"minecraft:bedrock", "minecraft:end_portal",
+                    "minecraft:end_portal_frame", "minecraft:command_block", "minecraft:repeating_command_block", "minecraft:chain_command_block", "minecraft:barrier",
+                    "minecraft:structure_block", "minecraft:structure_void", "minecraft:piston_extension", "minecraft:end_gateway"
+            }, "Blocks that can't be broken by withers.").getStringList();
+            dragonProofBlocks = config.get("general", "dragonProofBlocks", new String[]{"minecraft:bedrock", "minecraft:end_portal",
+                    "minecraft:end_portal_frame", "minecraft:command_block", "minecraft:repeating_command_block", "minecraft:chain_command_block", "minecraft:barrier",
+                    "minecraft:obsidian", "minecraft:end_stone", "minecraft:iron_bars", "minecraft:end_gateway"
+            }, "Blocks that can't be broken by ender dragons.").getStringList();
+        } catch(Exception e) {
+        } finally {
+            if (config.hasChanged()) config.save();
+        }
     }
     
     public static void load() {
