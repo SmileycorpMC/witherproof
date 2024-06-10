@@ -3,7 +3,8 @@
   "package": "net.smileycorp.witherproof.mixin",
   "refmap": "mixins.witherproof.refmap.json",
   "mixins": [
-    "MixinBlock"
+    "MixinBlock",
+    "MixinEntity"
   ],
   "client": [],
   "server": []
